@@ -14,10 +14,12 @@ import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
 import { adapt as createfilter } from './adapters/filter.js';
 
-const qb = (strings) => {
-  const expr = strings.join('');
-  const query = expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
-  return createfilter(query);
+const qb = {
+  filter: (strings) => {
+    const expr = strings.join('');
+    const query = expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
+    return createfilter(query);
+  },
 };
 
 export { qb };

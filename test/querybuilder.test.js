@@ -248,13 +248,13 @@ describe('Test Query Builder Range Property Filters', () => {
   ];
 
   it('createfilter limits results', () => {
-    assert.deepEqual(qb`rangeproperty.property=val
+    assert.deepEqual(qb.filter`rangeproperty.property=val
 rangeproperty.lowerBound=1
 rangeproperty.upperBound=100`(testarray), [
       { foo: 'foo', bar: 'bar', val: 3.1415 },
     ]);
 
-    assert.deepEqual(qb`rangeproperty.property=val
+    assert.deepEqual(qb.filter`rangeproperty.property=val
 rangeproperty.lowerBound=1
 rangeproperty.lowerOperation=x
 rangeproperty.upperOperation=x
@@ -294,44 +294,44 @@ describe('Test Query Builder Property Filters', () => {
   });
 
   it('createfilter limits results', () => {
-    assert.deepEqual(qb`p.limit=1`(testarray), [
+    assert.deepEqual(qb.filter`p.limit=1`(testarray), [
       { foo: 'bar', bar: 'baz' },
     ]);
 
-    assert.deepEqual(qb`p.offset=1&p.limit=1`(testarray), [
+    assert.deepEqual(qb.filter`p.offset=1&p.limit=1`(testarray), [
       { foo: 'foo', bar: 'bar' },
     ]);
 
-    assert.deepEqual(qb`p.offset=1`(testarray), [
+    assert.deepEqual(qb.filter`p.offset=1`(testarray), [
       { foo: 'foo', bar: 'bar' },
       { foo: 'baz', bar: 'foo' },
     ]);
   });
 
   it('createfilter filters properties with equals', () => {
-    assert.deepEqual(qb`property=foo
+    assert.deepEqual(qb.filter`property=foo
 property.value=bar`(testarray), [
       { foo: 'bar', bar: 'baz' },
     ]);
   });
 
   it('createfilter filters properties with like', () => {
-    assert.deepEqual(qb`property=foo
+    assert.deepEqual(qb.filter`property=foo
 property.operation=like
 property.value=a`(testarray), [
       { foo: 'bar', bar: 'baz' },
       { foo: 'baz', bar: 'foo' },
     ]);
 
-    assert.deepEqual(qb`property=unknown
+    assert.deepEqual(qb.filter`property=unknown
 property.operation=like
 property.value=a`(testarray), []);
 
-    assert.deepEqual(qb`property=unknown&property.operation=like&property.value=a`(testarray), []);
+    assert.deepEqual(qb.filter`property=unknown&property.operation=like&property.value=a`(testarray), []);
   });
 
   it('createfilter filters properties with unequals', () => {
-    assert.deepEqual(qb`property=foo
+    assert.deepEqual(qb.filter`property=foo
 property.operation=unequals
 property.value=foo`(testarray), [
       { foo: 'bar', bar: 'baz' },
@@ -340,7 +340,7 @@ property.value=foo`(testarray), [
   });
 
   it('createfilter filters properties with unequals and OR joins', () => {
-    assert.deepEqual(qb`1_property=foo
+    assert.deepEqual(qb.filter`1_property=foo
 1_property.value=bar
 2_property=foo
 2_property.value=baz
@@ -351,18 +351,18 @@ nop=nop`(testarray), [
   });
 
   it('createfilter filters properties with exists', () => {
-    assert.deepEqual(qb`property=foo
+    assert.deepEqual(qb.filter`property=foo
 property.operation=exists`(testarray), testarray);
 
-    assert.deepEqual(qb`property=qxb
+    assert.deepEqual(qb.filter`property=qxb
 property.operation=exists`(testarray), []);
   });
 
   it('createfilter filters properties with not', () => {
-    assert.deepEqual(qb`property=foo
+    assert.deepEqual(qb.filter`property=foo
 property.operation=not`(testarray), []);
 
-    assert.deepEqual(qb`property=qxb
+    assert.deepEqual(qb.filter`property=qxb
 property.operation=not`(testarray), testarray);
   });
 });
