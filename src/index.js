@@ -10,8 +10,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { load as loadquerystring } from './url.js';
-import { load as loadtext } from './text.js';
+import { load as loadquerystring } from './loaders/url.js';
+import { load as loadtext } from './loaders/text.js';
 import { createfilter } from './filter.js';
 
 const qb = (strings) => {

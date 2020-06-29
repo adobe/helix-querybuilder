@@ -12,8 +12,8 @@
 /* eslint-env mocha */
 
 import assert from 'assert';
-import { load as loadquerystring } from '../src/url.js';
-import { load as loadtext } from '../src/text.js';
+import { load as loadquerystring } from '../src/loaders/url.js';
+import { load as loadtext } from '../src/loaders/text.js';
 import { createfilter } from '../src/filter.js';
 import { transformconjunctions, flat } from '../src/util.js';
 import { qb } from '../src/index.js';
