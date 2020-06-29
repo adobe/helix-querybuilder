@@ -45,7 +45,7 @@
     "lint-staged": "10.1.2",
     "mocha": "7.1.1",
     "nyc": "15.0.1",
-    "rollup": "^2.18.1",
+    "rollup": "2.18.1",
     "semantic-release": "17.0.4"
   },
   "lint-staged": {
