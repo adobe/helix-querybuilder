@@ -13,5 +13,13 @@
 module.exports = {
     root: true,
     extends: '@adobe/helix',
-  };
+    parserOptions: {
+      sourceType: 'module',
+    },
+    rules: {
+      'import/prefer-default-export': [0],
+      'import/extensions': [2, 'always'], // extensions allow use in browser,
+      'import/no-default-export': [2] // node compatibility
+    }
+};
   

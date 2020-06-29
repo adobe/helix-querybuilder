@@ -21,4 +21,4 @@ describe('Distribution tests', () => {
     const packjson = JSON.parse(pack.toString());
     assert.equal(Object.keys(packjson.dependencies), 0);
   });
-})
+});
