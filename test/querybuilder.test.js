@@ -12,9 +12,9 @@
 /* eslint-env mocha */
 
 import assert from 'assert';
-import { loadquerystring, loadtext, flat } from '../src/url.js';
+import { loadquerystring, loadtext } from '../src/url.js';
 import { createfilter } from '../src/filter.js';
-import { transformconjunctions } from '../src/util.js';
+import { transformconjunctions, flat } from '../src/util.js';
 import { qb } from '../src/index.js';
 
 describe('Test Query Builder URL Parser', () => {
