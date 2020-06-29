@@ -9,16 +9,19 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
-/* eslint-env mocha */
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-
-describe('Distribution tests', () => {
-  it('helix-querybuilder has no runtime dependencies', () => {
-    const pack = fs.readFileSync(path.resolve(__dirname, '../package.json'));
-    const packjson = JSON.parse(pack.toString());
-    assert.equal(Object.keys(packjson.dependencies), 0);
-  });
-});
+const pkg = require('./package.json');
+// eslint-disable-next-line import/no-default-export
+export default [
+  // CommonJS (for Node) and ES module (for bundlers) build.
+  // (We could have three entries in the configuration array
+  // instead of two, but it's quicker to generate multiple
+  // builds from a single configuration where possible, using
+  // an array for the `output` option, where we can specify
+  // `file` and `format` for each target)
+  {
+    input: 'src/index.js',
+    output: [
+      { file: pkg.main, format: 'cjs' },
+    ],
+  },
+];
