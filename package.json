@@ -2,11 +2,14 @@
   "name": "@adobe/helix-querybuilder",
   "version": "1.0.0",
   "description": "Helix Querybuilder",
-  "main": "src/index.js",
+  "main": "dist/querybuilder.js",
+  "module": "src/index.js",
   "scripts": {
     "test": " nyc --reporter=text --reporter=lcov --check-coverage --branches 100 --statements 100 --lines 100 mocha --require @babel/register --require @babel/polyfill",
     "test-ci": "nyc --reporter=text --reporter=lcov --check-coverage --branches 100 --statements 100 --lines 100  mocha --require @babel/register --require @babel/polyfill --reporter xunit --reporter-options output=./junit/test-results.xml && codecov",
     "lint": "./node_modules/.bin/eslint .",
+    "build": "rollup -c",
+    "prepack": "npm run build",
     "semantic-release": "semantic-release",
     "docs": "npx jsdoc2md -c .jsdoc.json --files 'src/*.js'  > docs/API.md",
     "commit": "git-cz"
@@ -42,6 +45,7 @@
     "lint-staged": "10.1.2",
     "mocha": "7.1.1",
     "nyc": "15.0.1",
+    "rollup": "^2.18.1",
     "semantic-release": "17.0.4"
   },
   "lint-staged": {
@@ -54,5 +58,8 @@
     "ghooks": {
       "pre-commit": "npx lint-staged"
     }
-  }
+  },
+  "files": [
+    "dist", "src"
+  ]
 }
