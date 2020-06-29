@@ -27,7 +27,6 @@ const flat = (flattened, e) => {
 
 export { flat };
 
-
 export function transformconjunctions(qbtree) {
   // this is not a group, just ignore it
   if (!qbtree.predicates) {
