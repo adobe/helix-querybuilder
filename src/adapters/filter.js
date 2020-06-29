@@ -64,4 +64,4 @@ function defaultfilter() {
   return () => true;
 }
 
-export { createfilter };
+export { createfilter as adapt };

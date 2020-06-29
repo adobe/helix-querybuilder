@@ -12,7 +12,7 @@
  */
 import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
-import { createfilter } from './filter.js';
+import { adapt as createfilter } from './adapters/filter.js';
 
 const qb = (strings) => {
   const expr = strings.join('');
