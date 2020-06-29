@@ -12,7 +12,7 @@
 /* eslint-disable no-underscore-dangle, no-param-reassign */
 import { nest, cast } from './util.js';
 
-function loadquerystring(str, prefix = '') {
+function load(str, prefix = '') {
   const obj = cast(new URLSearchParams(str));
 
   return nest(Object.entries(obj).reduce((o, [k, v]) => {
@@ -24,10 +24,4 @@ function loadquerystring(str, prefix = '') {
   }, {}));
 }
 
-function loadtext(txt) {
-  const pairs = txt.split('\n').map((l) => l.split('=').slice(0, 2)).filter(([k]) => !!k);
-
-  return nest(cast(pairs));
-}
-
-export { loadquerystring, loadtext };
+export { load };
