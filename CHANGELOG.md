@@ -1,3 +1,10 @@
+# 1.0.0 (2020-06-29)
+
+
+### Bug Fixes
+
+* **deps:** npm audit fix ([8cc5b27](https://github.com/adobe/helix-querybuilder/commit/8cc5b2736b16ac6674c9639fa9fc58e88f8ce363))
+
 ## [1.4.3](https://github.com/adobe/helix-library/compare/v1.4.2...v1.4.3) (2020-04-06)
 
 
