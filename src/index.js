@@ -15,22 +15,20 @@ import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
 
 function query(input) {
-  if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every(e => typeof e === 'object'))) {
+  if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'object'))) {
     return loadjson(input);
   }
-  if ((typeof input === 'string' && !Array.isArray(input)) || (Array.isArray(input) && input.every(e => typeof e === 'string'))) {
+  if ((typeof input === 'string' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'string'))) {
     const expr = Array.isArray(input) ? input.join('') : input;
     return expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
   }
   return {};
 }
 
-const filter = (strings) => {
-  return createfilter(query(strings));
-};
+const filter = (strings) => createfilter(query(strings));
 
 const qb = {
-  filter
+  filter,
 };
 
 export { qb, filter };

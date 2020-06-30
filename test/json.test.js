@@ -12,12 +12,12 @@
 /* eslint-env mocha */
 
 import assert from 'assert';
-import { unnest } from '../src/loaders/json.js';
 import { safeLoad } from 'js-yaml';
+import { unnest } from '../src/loaders/json.js';
 import { qb } from '../src/index.js';
 
 function assertQuery(yaml, pairs) {
-  assert.deepEqual(unnest(safeLoad(yaml)), pairs.split('\n').filter(e => !!e).map(e => e.split('=')));
+  assert.deepEqual(unnest(safeLoad(yaml)), pairs.split('\n').filter((e) => !!e).map((e) => e.split('=')));
 }
 
 function assertResults(yaml, input, expected) {
@@ -28,13 +28,13 @@ function assertResults(yaml, input, expected) {
 
 describe('JSON/YAML integration test', () => {
   const example = [
-    { foo: 'bar'},
-    { foo: 'baz'},
-    { foo: 'foo'},
+    { foo: 'bar' },
+    { foo: 'baz' },
+    { foo: 'foo' },
   ];
 
   it('Null filter works', () => {
-    assertResults(``, example, example);
+    assertResults('', example, example);
   });
 
   it('Non filter works', () => {
@@ -81,16 +81,17 @@ describe('JSON loader tests', () => {
   it('and becomes a group', () => {
     const res = unnest({
       and: [{
-      property: {
-        property: 'foo',
-        value: 'bar',
-      },
-    }, {
-      property: {
-        property: 'baz',
-        value: 'bar',
-      },
-    }]});
+        property: {
+          property: 'foo',
+          value: 'bar',
+        },
+      }, {
+        property: {
+          property: 'baz',
+          value: 'bar',
+        },
+      }],
+    });
 
     assert.deepStrictEqual(res, [
       ['group.1_property.property', 'foo'],
@@ -104,16 +105,17 @@ describe('JSON loader tests', () => {
   it('or becomes a group', () => {
     const res = unnest({
       or: [{
-      property: {
-        property: 'foo',
-        value: 'bar',
-      },
-    }, {
-      property: {
-        property: 'baz',
-        value: 'bar',
-      },
-    }]});
+        property: {
+          property: 'foo',
+          value: 'bar',
+        },
+      }, {
+        property: {
+          property: 'baz',
+          value: 'bar',
+        },
+      }],
+    });
 
     assert.deepStrictEqual(res, [
       ['group.1_property.property', 'foo'],
@@ -133,5 +135,5 @@ property.property=foo
 property.value=bar
 `]];
 
-  examples.forEach(([yaml, qb], i) => it(`Misc Test (${i})`, () => assertQuery(yaml, qb)));
+  examples.forEach(([yaml, qbl], i) => it(`Misc Test (${i})`, () => assertQuery(yaml, qbl)));
 });

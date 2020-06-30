@@ -13,14 +13,14 @@
 import { nest, cast } from '../util.js';
 
 function ispair(e) {
-  return Array.isArray(e) && e.length === 2 && typeof e[0] === 'string' && !Array.isArray(e[1]) && typeof e[1] !== 'object'
+  return Array.isArray(e) && e.length === 2 && typeof e[0] === 'string' && !Array.isArray(e[1]) && typeof e[1] !== 'object';
 }
 
 function flat(arr) {
   if (arr.every(ispair)) {
     return arr;
   }
-  return [].concat(...arr)
+  return [].concat(...arr);
 }
 
 function unnest(obj, prefix = '') {
@@ -29,7 +29,7 @@ function unnest(obj, prefix = '') {
     return flat(retval);
   }
   if (typeof obj === 'object') {
-    const retval = Object.entries(obj).map(([key, value]) => unnest(value, `${prefix}${(key === 'and' || key === 'or' ) ? 'group' : key}.`));
+    const retval = Object.entries(obj).map(([key, value]) => unnest(value, `${prefix}${(key === 'and' || key === 'or') ? 'group' : key}.`));
     if (obj.and || obj.or) {
       retval.push([[`${prefix}group.p.or`, !!obj.or]]);
     }
