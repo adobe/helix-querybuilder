@@ -11,14 +11,26 @@
  */
 import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
+import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
 
-const qb = {
-  filter: (strings) => {
-    const expr = strings.join('');
-    const query = expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
-    return createfilter(query);
-  },
+function query(input) {
+  if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every(e => typeof e === 'object'))) {
+    return loadjson(input);
+  }
+  if ((typeof input === 'string' && !Array.isArray(input)) || (Array.isArray(input) && input.every(e => typeof e === 'string'))) {
+    const expr = Array.isArray(input) ? input.join('') : input;
+    return expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
+  }
+  return {};
+}
+
+const filter = (strings) => {
+  return createfilter(query(strings));
 };
 
-export { qb };
+const qb = {
+  filter
+};
+
+export { qb, filter };

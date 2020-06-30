@@ -248,9 +248,9 @@ describe('Test Query Builder Range Property Filters', () => {
   ];
 
   it('createfilter limits results', () => {
-    assert.deepEqual(qb.filter`rangeproperty.property=val
+    assert.deepEqual(qb.filter(`rangeproperty.property=val
 rangeproperty.lowerBound=1
-rangeproperty.upperBound=100`(testarray), [
+rangeproperty.upperBound=100`)(testarray), [
       { foo: 'foo', bar: 'bar', val: 3.1415 },
     ]);
 
