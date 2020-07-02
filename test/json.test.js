@@ -14,47 +14,10 @@
 import assert from 'assert';
 import { safeLoad } from 'js-yaml';
 import { unnest } from '../src/loaders/json.js';
-import { qb } from '../src/index.js';
 
 function assertQuery(yaml, pairs) {
   assert.deepEqual(unnest(safeLoad(yaml)), pairs.split('\n').filter((e) => !!e).map((e) => e.split('=')));
 }
-
-function assertResults(yaml, input, expected) {
-  const f = qb.filter(safeLoad(yaml));
-  const result = f(input);
-  assert.deepEqual(result, expected);
-}
-
-describe('JSON/YAML integration test', () => {
-  const example = [
-    { foo: 'bar' },
-    { foo: 'baz' },
-    { foo: 'foo' },
-  ];
-
-  it('Null filter works', () => {
-    assertResults('', example, example);
-  });
-
-  it('Non filter works', () => {
-    assertResults(`
-property:
-    property: gnu
-    value: schaut zu
-    operation: unequals
-`, example, example);
-  });
-
-  it('Harsh filter works', () => {
-    assertResults(`
-property:
-    property: foo
-    value: schaut zu
-    operation: equals
-`, example, []);
-  });
-});
 
 describe('JSON loader tests', () => {
   it('Lists get prefixes', () => {
