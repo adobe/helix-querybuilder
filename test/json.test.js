@@ -20,6 +20,27 @@ function assertQuery(yaml, pairs) {
 }
 
 describe('JSON loader tests', () => {
+  it('Shorthand Syntax is supported', () => {
+    const res = unnest([{
+      property: {
+        _: 'foo',
+        value: 'bar',
+      },
+    }, {
+      testpredicate: {
+        _: 'baz',
+        value: 'bar',
+      },
+    }]);
+
+    assert.deepStrictEqual(res, [
+      ['1_property.property', 'foo'],
+      ['1_property.value', 'bar'],
+      ['2_testpredicate.testpredicate', 'baz'],
+      ['2_testpredicate.value', 'bar'],
+    ]);
+  });
+
   it('Lists get prefixes', () => {
     const res = unnest([{
       property: {

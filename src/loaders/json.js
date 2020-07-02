@@ -49,7 +49,18 @@ function unnest(obj, prefix = '') {
     return flat(retval);
   }
   if (typeof obj === 'object') {
-    const retval = Object.entries(obj).map(([key, value]) => unnest(value, `${prefix}${(key === 'and' || key === 'or') ? 'group' : key}.`));
+    const retval = Object.entries(obj).map(([key, value]) => {
+      let name = key;
+      if (key === 'and' || key === 'or') {
+        name = 'group';
+      }
+      if (key === '_') {
+        const steps = prefix.split(/[._]/);
+        steps.pop();
+        name = steps.pop();
+      }
+      return unnest(value, `${prefix}${name}.`)
+    });
     if (obj.and || obj.or) {
       retval.push([[`${prefix}group.p.or`, !!obj.or]]);
     }
