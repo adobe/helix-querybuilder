@@ -12,10 +12,22 @@
 
 import { nest, cast } from '../util.js';
 
+/**
+ * Checks if the argument is a pair (array with two elements, the first
+ * must be a string)
+ * @param {array} e a potential pair
+ * @returns {boolean} true for pairs
+ */
 function ispair(e) {
   return Array.isArray(e) && e.length === 2 && typeof e[0] === 'string' && !Array.isArray(e[1]) && typeof e[1] !== 'object';
 }
 
+/**
+ * Flattens arrays of arrays (only one level) so that
+ * an array af pairs remains
+ * @param {array} arr an array of (potentially) nested arrays
+ * @returns {array} an array of pairs
+ */
 function flat(arr) {
   if (arr.every(ispair)) {
     return arr;
@@ -23,6 +35,14 @@ function flat(arr) {
   return [].concat(...arr);
 }
 
+/**
+ * Turns a nested QBL in JSON notation into a list of
+ * key-value-pairs. Recursively descends into each object
+ * and carries the correct prefix string
+ * @param {object} obj QBL (fragment) in JSON notation
+ * @param {string} prefix the prefix carried from outer objects
+ * @returns {Array} a list of key-value-pairs
+ */
 function unnest(obj, prefix = '') {
   if (Array.isArray(obj)) {
     const retval = obj.map((element, index) => unnest(element, `${prefix}${index + 1}_`));
@@ -38,7 +58,11 @@ function unnest(obj, prefix = '') {
 
   return [prefix.slice(0, -1), obj];
 }
-
+/**
+ * Loads a QBL in JSON notation
+ * @param {string} json the QBL JSON object
+ * @returns {object} Query Builder AST
+ */
 function load(json) {
   const obj = cast(unnest(json));
   return nest(obj);
