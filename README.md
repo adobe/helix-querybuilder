@@ -69,6 +69,25 @@ property:
 
 In the following examples the multi-line and YAML notation will be used.
 
+Of course, repeating the name of the predicate is boring and tedious, so the short-hand `_` can be used instead of the inner repetition of the predicate name:
+
+```json
+{
+  "property": {
+    "_": "author",
+    "value": "svishnoi"
+  }
+}
+```
+
+or as YAML like:
+
+```yaml
+property:
+  _: author
+  value: svishnoi
+```
+
 ## Usage
 
 ```javascript
