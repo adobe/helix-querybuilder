@@ -10,7 +10,11 @@
  * governing permissions and limitations under the License.
  */
 import { nest, cast } from '../util.js';
-
+/**
+ * Loads a multiline QBL expression
+ * @param {string} txt the QBL expression (may contain blank lines)
+ * @returns {object} Query Builder AST
+ */
 function load(txt) {
   const pairs = txt.split('\n').map((l) => l.split('=').slice(0, 2)).filter(([k]) => !!k);
 

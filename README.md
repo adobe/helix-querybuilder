@@ -90,12 +90,32 @@ property:
 
 ## Usage
 
+### Simple Usage
+
 ```javascript
 import { qb } from '@adobe/querybuilder';
 
 const filter = qb.filter(window.location.search);
 const filtered = filter(dataarray);
 ```
+
+### Loading from JSON to create a filter
+
+```javascript
+// other loaders are availale, e.g. text and url
+import { load } from '@adobe/querybuilder/src/loaders/json.js'
+// other adapters will be made available soon
+import { adapt } from '@adobe/querybuilder/src/adapters/filter.js'
+
+const qb = load(JSON.parse(input));
+const filter = adapt(qb);
+
+filter([
+  { foo: 'bar'}
+]);
+```
+
+### API Reference
 
 For more, see the [API documentation](docs/API.md).
 
@@ -118,3 +138,9 @@ $ npm test
 ```bash
 $ npm run lint
 ```
+
+## Developing Loaders
+
+A loader must implement and export a `load` function that accepts a Query Builder Language representation in any form and returns a Query Builder AST object.
+
+If you have the QBL as key-value pairs, then you can use  [`{ nest } from '@adobe/querybuilder/src/utils.js'`](./docs/API.md#nest) for a quick transformation.
