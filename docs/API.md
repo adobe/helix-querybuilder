@@ -1,6 +1,14 @@
 ## Functions
 
 <dl>
+<dt><a href="#query">query(input)</a> ⇒ <code>object</code></dt>
+<dd><p>Loads a Query Builder AST from generic input: either URL query string (with &amp;)
+or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)</p>
+</dd>
+<dt><a href="#filter">filter(strings)</a> ⇒ <code>function</code></dt>
+<dd><p>Convenience function that can be used as a tagged template
+function and returns a filter function</p>
+</dd>
 <dt><a href="#unique">unique(arr, key)</a> ⇒ <code>Array.&lt;string&gt;</code></dt>
 <dd><p>Adds items to an array while ensuring there are no
 duplicate elements in the array. Can be used ao a
@@ -12,7 +20,7 @@ Flattens only one level.</p>
 </dd>
 <dt><a href="#transformconjunctions">transformconjunctions(qbtree)</a> ⇒ <code>object</code></dt>
 <dd><p>Transforms a Quory Builder AST that has implicit conjunctions
-into one with explicit conjunctions. </p>
+into one with explicit conjunctions.</p>
 <p>The transformation rules are:</p>
 <ul>
 <li>predicates of the same type and property form a union (and)</li>
@@ -28,6 +36,32 @@ AST.</p>
 to boolean and number values.</p>
 </dd>
 </dl>
+
+<a name="query"></a>
+
+## query(input) ⇒ <code>object</code>
+Loads a Query Builder AST from generic input: either URL query string (with &)
+or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)
+
+**Kind**: global function  
+**Returns**: <code>object</code> - Query Builder AST  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| input | <code>object</code> \| <code>string</code> \| <code>Array.&lt;string&gt;</code> | QBL input |
+
+<a name="filter"></a>
+
+## filter(strings) ⇒ <code>function</code>
+Convenience function that can be used as a tagged template
+function and returns a filter function
+
+**Kind**: global function  
+**Returns**: <code>function</code> - filter function that accepts an array and returns a filtered array  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| strings | <code>Array.&lt;string&gt;</code> | string array as used in template literals |
 
 <a name="unique"></a>
 
@@ -62,7 +96,7 @@ Flattens only one level.
 
 ## transformconjunctions(qbtree) ⇒ <code>object</code>
 Transforms a Quory Builder AST that has implicit conjunctions
-into one with explicit conjunctions. 
+into one with explicit conjunctions.
 
 The transformation rules are:
 - predicates of the same type and property form a union (and)

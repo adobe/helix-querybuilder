@@ -44,8 +44,8 @@ export { flat };
 
 /**
  * Transforms a Quory Builder AST that has implicit conjunctions
- * into one with explicit conjunctions. 
- * 
+ * into one with explicit conjunctions.
+ *
  * The transformation rules are:
  * - predicates of the same type and property form a union (and)
  * - predicates of different types form an intersection (or)
@@ -95,7 +95,7 @@ export function transformconjunctions(qbtree) {
  * Turns a flat list of key-value-pairs into a nested Query Builder
  * AST.
  * @param {object} obj Query Builder expressions as key-value pairs
- * @returns {object} a Query Builder AST 
+ * @returns {object} a Query Builder AST
  */
 export function nest(obj) {
   const entries = Object.entries(obj)

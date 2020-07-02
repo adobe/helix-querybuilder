@@ -14,6 +14,12 @@ import { load as loadtext } from './loaders/text.js';
 import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
 
+/**
+ * Loads a Query Builder AST from generic input: either URL query string (with &)
+ * or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)
+ * @param {object|string|string[]} input QBL input
+ * @returns {object} Query Builder AST
+ */
 function query(input) {
   if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'object'))) {
     return loadjson(input);
@@ -25,6 +31,12 @@ function query(input) {
   return {};
 }
 
+/**
+ * Convenience function that can be used as a tagged template
+ * function and returns a filter function
+ * @param {string[]} strings string array as used in template literals
+ * @returns {function} filter function that accepts an array and returns a filtered array
+ */
 const filter = (strings) => createfilter(query(strings));
 
 const qb = {
