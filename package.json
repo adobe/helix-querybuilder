@@ -11,7 +11,7 @@
     "build": "rollup -c",
     "prepack": "npm run build",
     "semantic-release": "semantic-release",
-    "docs": "npx jsdoc2md -c .jsdoc.json --files 'src/*.js'  > docs/API.md",
+    "docs": "npx jsdoc2md -c .jsdoc.json --files 'src/*.js' src/*/*.js  > docs/API.md",
     "commit": "git-cz"
   },
   "repository": {

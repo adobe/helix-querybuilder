@@ -35,6 +35,28 @@ AST.</p>
 <dd><p>Turns URL parameters into key-value pairs. Assigns type
 to boolean and number values.</p>
 </dd>
+<dt><a href="#ispair">ispair(e)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks if the argument is a pair (array with two elements, the first
+must be a string)</p>
+</dd>
+<dt><a href="#flat">flat(arr)</a> ⇒ <code>array</code></dt>
+<dd><p>Flattens arrays of arrays (only one level) so that
+an array af pairs remains</p>
+</dd>
+<dt><a href="#unnest">unnest(obj, prefix)</a> ⇒ <code>Array</code></dt>
+<dd><p>Turns a nested QBL in JSON notation into a list of
+key-value-pairs. Recursively descends into each object
+and carries the correct prefix string</p>
+</dd>
+<dt><a href="#load">load(json)</a> ⇒ <code>object</code></dt>
+<dd><p>Loads a QBL in JSON notation</p>
+</dd>
+<dt><a href="#load">load(txt)</a> ⇒ <code>object</code></dt>
+<dd><p>Loads a multiline QBL expression</p>
+</dd>
+<dt><a href="#load">load(str, prefix)</a> ⇒ <code>object</code></dt>
+<dd><p>Loads a URL query string</p>
+</dd>
 </dl>
 
 <a name="query"></a>
@@ -134,4 +156,82 @@ to boolean and number values.
 | Param | Type | Description |
 | --- | --- | --- |
 | searchparams | <code>URLSearchParams</code> | QBL as URL query string |
+
+<a name="ispair"></a>
+
+## ispair(e) ⇒ <code>boolean</code>
+Checks if the argument is a pair (array with two elements, the first
+must be a string)
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - true for pairs  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| e | <code>array</code> | a potential pair |
+
+<a name="flat"></a>
+
+## flat(arr) ⇒ <code>array</code>
+Flattens arrays of arrays (only one level) so that
+an array af pairs remains
+
+**Kind**: global function  
+**Returns**: <code>array</code> - an array of pairs  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| arr | <code>array</code> | an array of (potentially) nested arrays |
+
+<a name="unnest"></a>
+
+## unnest(obj, prefix) ⇒ <code>Array</code>
+Turns a nested QBL in JSON notation into a list of
+key-value-pairs. Recursively descends into each object
+and carries the correct prefix string
+
+**Kind**: global function  
+**Returns**: <code>Array</code> - a list of key-value-pairs  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| obj | <code>object</code> | QBL (fragment) in JSON notation |
+| prefix | <code>string</code> | the prefix carried from outer objects |
+
+<a name="load"></a>
+
+## load(json) ⇒ <code>object</code>
+Loads a QBL in JSON notation
+
+**Kind**: global function  
+**Returns**: <code>object</code> - Query Builder AST  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>string</code> | the QBL JSON object |
+
+<a name="load"></a>
+
+## load(txt) ⇒ <code>object</code>
+Loads a multiline QBL expression
+
+**Kind**: global function  
+**Returns**: <code>object</code> - Query Builder AST  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| txt | <code>string</code> | the QBL expression (may contain blank lines) |
+
+<a name="load"></a>
+
+## load(str, prefix) ⇒ <code>object</code>
+Loads a URL query string
+
+**Kind**: global function  
+**Returns**: <code>object</code> - Query Builder AST  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>string</code> | the URL query string (may start with `?`) |
+| prefix | <code>string</code> | the prefix used for parameters that should be considered |
 
