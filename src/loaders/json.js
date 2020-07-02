@@ -59,7 +59,7 @@ function unnest(obj, prefix = '') {
         steps.pop();
         name = steps.pop();
       }
-      return unnest(value, `${prefix}${name}.`)
+      return unnest(value, `${prefix}${name}.`);
     });
     if (obj.and || obj.or) {
       retval.push([[`${prefix}group.p.or`, !!obj.or]]);
