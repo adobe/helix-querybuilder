@@ -18,7 +18,7 @@ function query(input) {
   if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'object'))) {
     return loadjson(input);
   }
-  if ((typeof input === 'string' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'string'))) {
+  if (typeof input === 'string' || (Array.isArray(input) && input.every((e) => typeof e === 'string'))) {
     const expr = Array.isArray(input) ? input.join('') : input;
     return expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
   }
