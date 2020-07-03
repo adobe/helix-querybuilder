@@ -16,7 +16,13 @@ import { nest, toKVPairs } from '../util.js';
  * @returns {object} Query Builder AST
  */
 function load(txt) {
-  const pairs = txt.split('\n').map((l) => l.split('=').slice(0, 2)).filter(([k]) => !!k);
+  const pairs = txt
+    .split('\n')
+    .map((l) => {
+      const [key, ...rest] = l.split('=');
+      return [key, rest.join('=')];
+    })
+    .filter(([k]) => !!k);
 
   return nest(toKVPairs(pairs));
 }

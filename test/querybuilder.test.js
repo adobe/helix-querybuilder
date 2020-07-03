@@ -53,6 +53,13 @@ describe('Test Query Builder Text Parser', () => {
     });
   });
 
+  it('Works for values with =', () => {
+    assert.deepEqual(loadtext('property.value=la=la').predicates[0], {
+      _type: 'property',
+      value: 'la=la',
+    });
+  });
+
   it('Loads simple examples', () => {
     assert.deepEqual(loadtext(`type=cq:Page
 1_property=jcr:content/cq:template
