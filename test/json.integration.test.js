@@ -34,7 +34,7 @@ describe('JSON/YAML integration test', () => {
   it('Non filter works', () => {
     assertResults(`
 property:
-    property: gnu
+    _: gnu
     value: schaut zu
     operation: unequals
 `, example, example);
@@ -43,7 +43,7 @@ property:
   it('Harsh filter works', () => {
     assertResults(`
 property:
-    property: foo
+    _: foo
     value: schaut zu
     operation: equals
 `, example, []);
