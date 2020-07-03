@@ -253,7 +253,7 @@ export function nest(obj) {
  * @param {URLSearchParams} searchparams QBL as URL query string
  * @returns {object} QBL as key-value-pairs
  */
-export function cast(searchparams) {
+export function toKVPairs(searchparams) {
   return Array.from(searchparams).reduce((o, [k, v]) => {
     if (v === 'true' || v === 'false') {
       o[k] = (v === 'true');

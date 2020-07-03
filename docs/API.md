@@ -31,7 +31,7 @@ into one with explicit conjunctions.</p>
 <dd><p>Turns a flat list of key-value-pairs into a nested Query Builder
 AST.</p>
 </dd>
-<dt><a href="#cast">cast(searchparams)</a> ⇒ <code>object</code></dt>
+<dt><a href="#toKVPairs">toKVPairs(searchparams)</a> ⇒ <code>object</code></dt>
 <dd><p>Turns URL parameters into key-value pairs. Assigns type
 to boolean and number values.</p>
 </dd>
@@ -144,9 +144,9 @@ AST.
 | --- | --- | --- |
 | obj | <code>object</code> | Query Builder expressions as key-value pairs |
 
-<a name="cast"></a>
+<a name="toKVPairs"></a>
 
-## cast(searchparams) ⇒ <code>object</code>
+## toKVPairs(searchparams) ⇒ <code>object</code>
 Turns URL parameters into key-value pairs. Assigns type
 to boolean and number values.
 

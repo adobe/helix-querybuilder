@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { nest, cast } from '../util.js';
+import { nest, toKVPairs } from '../util.js';
 
 /**
  * Checks if the argument is a pair (array with two elements, the first
@@ -75,7 +75,7 @@ function unnest(obj, prefix = '') {
  * @returns {object} Query Builder AST
  */
 function load(json) {
-  const obj = cast(unnest(json));
+  const obj = toKVPairs(unnest(json));
   return nest(obj);
 }
 
