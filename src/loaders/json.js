@@ -24,9 +24,9 @@ function ispair(e) {
 
 /**
  * Flattens arrays of arrays (only one level) so that
- * an array af pairs remains
+ * an array af pairs or non-Arrays remains.
  * @param {array} arr an array of (potentially) nested arrays
- * @returns {array} an array of pairs
+ * @returns {array} an array of pairs (or non-arrays)
  */
 function flat(arr) {
   if (arr.every(ispair)) {

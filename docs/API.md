@@ -41,7 +41,7 @@ must be a string)</p>
 </dd>
 <dt><a href="#flat">flat(arr)</a> ⇒ <code>array</code></dt>
 <dd><p>Flattens arrays of arrays (only one level) so that
-an array af pairs remains</p>
+an array af pairs or non-Arrays remains.</p>
 </dd>
 <dt><a href="#unnest">unnest(obj, prefix)</a> ⇒ <code>Array</code></dt>
 <dd><p>Turns a nested QBL in JSON notation into a list of
@@ -174,10 +174,10 @@ must be a string)
 
 ## flat(arr) ⇒ <code>array</code>
 Flattens arrays of arrays (only one level) so that
-an array af pairs remains
+an array af pairs or non-Arrays remains.
 
 **Kind**: global function  
-**Returns**: <code>array</code> - an array of pairs  
+**Returns**: <code>array</code> - an array of pairs (or non-arrays)  
 
 | Param | Type | Description |
 | --- | --- | --- |
