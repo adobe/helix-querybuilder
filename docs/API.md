@@ -18,7 +18,7 @@ reducer.</p>
 <dd><p>A reducer function that flattens an array of array.
 Flattens only one level.</p>
 </dd>
-<dt><a href="#transformconjunctions">transformconjunctions(qbtree)</a> ⇒ <code>object</code></dt>
+<dt><a href="#transformConjunctions">transformConjunctions(qbtree)</a> ⇒ <code>object</code></dt>
 <dd><p>Transforms a Quory Builder AST that has implicit conjunctions
 into one with explicit conjunctions.</p>
 <p>The transformation rules are:</p>
@@ -114,9 +114,9 @@ Flattens only one level.
 | flattened | <code>array</code> | the flattened array |
 | e | <code>array</code> | a new array to flatten |
 
-<a name="transformconjunctions"></a>
+<a name="transformConjunctions"></a>
 
-## transformconjunctions(qbtree) ⇒ <code>object</code>
+## transformConjunctions(qbtree) ⇒ <code>object</code>
 Transforms a Quory Builder AST that has implicit conjunctions
 into one with explicit conjunctions.
 

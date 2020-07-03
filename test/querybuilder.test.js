@@ -15,7 +15,7 @@ import assert from 'assert';
 import { load as loadquerystring } from '../src/loaders/url.js';
 import { load as loadtext } from '../src/loaders/text.js';
 import { adapt as createfilter } from '../src/adapters/filter.js';
-import { transformconjunctions, flat } from '../src/util.js';
+import { transformConjunctions, flat } from '../src/util.js';
 import { qb } from '../src/index.js';
 
 describe('Test Query Builder URL Parser', () => {
@@ -375,13 +375,13 @@ describe('Test Conjunction Transformer', () => {
       value: 'bar',
     };
 
-    const result = transformconjunctions(input);
+    const result = transformConjunctions(input);
 
     assert.deepEqual(input, result);
   });
 
   it('Transforms a simple conjunction', () => {
-    const result = transformconjunctions({
+    const result = transformConjunctions({
       _type: 'root',
       conjunction: 'default',
       predicates: [

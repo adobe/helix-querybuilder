@@ -52,7 +52,7 @@ export { flat };
  * @param {object} qbtree Query Builder AST
  * @returns {object} Query Builder AST with explicit conjunctions
  */
-export function transformconjunctions(qbtree) {
+export function transformConjunctions(qbtree) {
   // this is not a group, just ignore it
   if (!qbtree.predicates) {
     return qbtree;
@@ -228,7 +228,7 @@ export function nest(obj) {
   // transform implicit conjunctions into explicit nested conjunctions
   const explicitgroups = groups.map((group) => ({
     ...group,
-    group: transformconjunctions(group.group),
+    group: transformConjunctions(group.group),
   }));
 
   explicitgroups.forEach((group) => {
@@ -244,7 +244,7 @@ export function nest(obj) {
 
   // console.log(JSON.stringify(root, undefined, 2));
 
-  return transformconjunctions(root);
+  return transformConjunctions(root);
 }
 
 /**
