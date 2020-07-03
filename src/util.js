@@ -16,7 +16,7 @@
  * duplicate elements in the array. Can be used ao a
  * reducer.
  * @param {string[]} arr an array of strings
- * @param {string} key a string that shoul occur oly once in the arrav
+ * @param {string} key a string that should occur only once in the arrav
  * @returns {string[]} the same array with unique entries
  */
 const unique = (arr, key) => {
@@ -43,7 +43,7 @@ const flat = (flattened, e) => {
 export { flat };
 
 /**
- * Transforms a Quory Builder AST that has implicit conjunctions
+ * Transforms a Query Builder AST that has implicit conjunctions
  * into one with explicit conjunctions.
  *
  * The transformation rules are:

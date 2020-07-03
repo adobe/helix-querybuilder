@@ -19,7 +19,7 @@ reducer.</p>
 Flattens only one level.</p>
 </dd>
 <dt><a href="#transformConjunctions">transformConjunctions(qbtree)</a> ⇒ <code>object</code></dt>
-<dd><p>Transforms a Quory Builder AST that has implicit conjunctions
+<dd><p>Transforms a Query Builder AST that has implicit conjunctions
 into one with explicit conjunctions.</p>
 <p>The transformation rules are:</p>
 <ul>
@@ -98,7 +98,7 @@ reducer.
 | Param | Type | Description |
 | --- | --- | --- |
 | arr | <code>Array.&lt;string&gt;</code> | an array of strings |
-| key | <code>string</code> | a string that shoul occur oly once in the arrav |
+| key | <code>string</code> | a string that should occur only once in the arrav |
 
 <a name="flat"></a>
 
@@ -117,7 +117,7 @@ Flattens only one level.
 <a name="transformConjunctions"></a>
 
 ## transformConjunctions(qbtree) ⇒ <code>object</code>
-Transforms a Quory Builder AST that has implicit conjunctions
+Transforms a Query Builder AST that has implicit conjunctions
 into one with explicit conjunctions.
 
 The transformation rules are:
