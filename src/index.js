@@ -20,7 +20,7 @@ import { adapt as createfilter } from './adapters/filter.js';
  * @param {object|string|string[]} input QBL input
  * @returns {object} Query Builder AST
  */
-function query(input) {
+function load(input) {
   if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'object'))) {
     return loadjson(input);
   }
@@ -37,7 +37,7 @@ function query(input) {
  * @param {string[]} strings string array as used in template literals
  * @returns {function} filter function that accepts an array and returns a filtered array
  */
-const filter = (strings) => createfilter(query(strings));
+const filter = (strings) => createfilter(load(strings));
 
 const qb = {
   filter,

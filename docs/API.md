@@ -1,7 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#query">query(input)</a> ⇒ <code>object</code></dt>
+<dt><a href="#load">load(input)</a> ⇒ <code>object</code></dt>
 <dd><p>Loads a Query Builder AST from generic input: either URL query string (with &amp;)
 or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)</p>
 </dd>
@@ -59,9 +59,9 @@ and carries the correct prefix string</p>
 </dd>
 </dl>
 
-<a name="query"></a>
+<a name="load"></a>
 
-## query(input) ⇒ <code>object</code>
+## load(input) ⇒ <code>object</code>
 Loads a Query Builder AST from generic input: either URL query string (with &)
 or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)
 
