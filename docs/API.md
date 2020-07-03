@@ -43,7 +43,7 @@ must be a string)</p>
 <dd><p>Flattens arrays of arrays (only one level) so that
 an array af pairs or non-Arrays remains.</p>
 </dd>
-<dt><a href="#unnest">unnest(obj, prefix)</a> ⇒ <code>Array</code></dt>
+<dt><a href="#unnest">unnest(obj, prefix, parentname)</a> ⇒ <code>Array</code></dt>
 <dd><p>Turns a nested QBL in JSON notation into a list of
 key-value-pairs. Recursively descends into each object
 and carries the correct prefix string</p>
@@ -185,7 +185,7 @@ an array af pairs or non-Arrays remains.
 
 <a name="unnest"></a>
 
-## unnest(obj, prefix) ⇒ <code>Array</code>
+## unnest(obj, prefix, parentname) ⇒ <code>Array</code>
 Turns a nested QBL in JSON notation into a list of
 key-value-pairs. Recursively descends into each object
 and carries the correct prefix string
@@ -197,6 +197,7 @@ and carries the correct prefix string
 | --- | --- | --- |
 | obj | <code>object</code> | QBL (fragment) in JSON notation |
 | prefix | <code>string</code> | the prefix carried from outer objects |
+| parentname | <code>string</code> | name of the parent predicate |
 
 <a name="load"></a>
 

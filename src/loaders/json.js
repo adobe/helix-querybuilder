@@ -41,9 +41,10 @@ function flat(arr) {
  * and carries the correct prefix string
  * @param {object} obj QBL (fragment) in JSON notation
  * @param {string} prefix the prefix carried from outer objects
+ * @param {string} parentname name of the parent predicate
  * @returns {Array} a list of key-value-pairs
  */
-function unnest(obj, prefix = '') {
+function unnest(obj, prefix = '', parentname) {
   if (Array.isArray(obj)) {
     const retval = obj.map((element, index) => unnest(element, `${prefix}${index + 1}_`));
     return flat(retval);
@@ -54,12 +55,10 @@ function unnest(obj, prefix = '') {
       if (key === 'and' || key === 'or') {
         name = 'group';
       }
-      if (key === '_') {
-        const steps = prefix.split(/[._]/);
-        steps.pop();
-        name = steps.pop();
+      if (key === '_' && parentname) {
+        name = parentname;
       }
-      return unnest(value, `${prefix}${name}.`);
+      return unnest(value, `${prefix}${name}.`, name);
     });
     if (obj.and || obj.or) {
       retval.push([[`${prefix}group.p.or`, !!obj.or]]);
