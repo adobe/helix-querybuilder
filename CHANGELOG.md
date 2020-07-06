@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/adobe/helix-querybuilder/compare/v1.0.0...v1.1.0) (2020-07-06)
+
+
+### Bug Fixes
+
+* **text:** make sure values can contain = ([de2344d](https://github.com/adobe/helix-querybuilder/commit/de2344dae63f30dd2d732fa9244db3b0d181d797))
+
+
+### Features
+
+* **json:** add a JSON loader ([dbbe086](https://github.com/adobe/helix-querybuilder/commit/dbbe0860049eae6812c20150d8eac5c85edbafb4)), closes [#1](https://github.com/adobe/helix-querybuilder/issues/1)
+* **json:** support short-hand syntax for JSON ([3634e7e](https://github.com/adobe/helix-querybuilder/commit/3634e7e704cba296d6ae9dd2059db50339d2a810))
+
 # 1.0.0 (2020-06-29)
 
 
