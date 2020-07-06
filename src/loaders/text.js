@@ -20,6 +20,7 @@ function load(txt) {
     .split('\n')
     .map((l) => {
       const [key, ...rest] = l.split('=');
+      // the rest can contain = signs, so we turn it back into a string
       return [key, rest.join('=')];
     })
     .filter(([k]) => !!k);
