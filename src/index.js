@@ -43,4 +43,4 @@ const qb = {
   filter,
 };
 
-export { qb, filter };
+export { qb };
