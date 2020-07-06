@@ -11,6 +11,14 @@
  */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
+/**
+ * Adds items to an array while ensuring there are no
+ * duplicate elements in the array. Can be used ao a
+ * reducer.
+ * @param {string[]} arr an array of strings
+ * @param {string} key a string that should occur only once in the arrav
+ * @returns {string[]} the same array with unique entries
+ */
 const unique = (arr, key) => {
   if (arr.indexOf(key) < 0) {
     arr.push(key);
@@ -18,6 +26,13 @@ const unique = (arr, key) => {
   return arr;
 };
 
+/**
+ * A reducer function that flattens an array of array.
+ * Flattens only one level.
+ * @param {array} flattened the flattened array
+ * @param {array} e a new array to flatten
+ * @returns {array} a flattened array
+ */
 const flat = (flattened, e) => {
   if (Array.isArray(e)) {
     return [...flattened, ...e];
@@ -27,7 +42,17 @@ const flat = (flattened, e) => {
 
 export { flat };
 
-export function transformconjunctions(qbtree) {
+/**
+ * Transforms a Query Builder AST that has implicit conjunctions
+ * into one with explicit conjunctions.
+ *
+ * The transformation rules are:
+ * - predicates of the same type and property form a union (and)
+ * - predicates of different types form an intersection (or)
+ * @param {object} qbtree Query Builder AST
+ * @returns {object} Query Builder AST with explicit conjunctions
+ */
+export function transformConjunctions(qbtree) {
   // this is not a group, just ignore it
   if (!qbtree.predicates) {
     return qbtree;
@@ -38,8 +63,9 @@ export function transformconjunctions(qbtree) {
     delete qbtree.conjunction;
     return qbtree;
   }
+  // group by type and property
   const groups = qbtree.predicates.reduce((grps, predicate) => {
-    const name = `${predicate._type}:${predicate.property}`;
+    const name = `${predicate._type}:${predicate[predicate._type]}`;
     if (!grps[name]) {
       grps[name] = [];
     }
@@ -47,6 +73,7 @@ export function transformconjunctions(qbtree) {
     return grps;
   }, {});
 
+  // assume a union
   qbtree._type = 'and';
   delete qbtree.or;
   delete qbtree.conjunction;
@@ -64,6 +91,12 @@ export function transformconjunctions(qbtree) {
   return qbtree;
 }
 
+/**
+ * Turns a flat list of key-value-pairs into a nested Query Builder
+ * AST.
+ * @param {object} obj Query Builder expressions as key-value pairs
+ * @returns {object} a Query Builder AST
+ */
 export function nest(obj) {
   const entries = Object.entries(obj)
     .map(([k, v]) => {
@@ -195,7 +228,7 @@ export function nest(obj) {
   // transform implicit conjunctions into explicit nested conjunctions
   const explicitgroups = groups.map((group) => ({
     ...group,
-    group: transformconjunctions(group.group),
+    group: transformConjunctions(group.group),
   }));
 
   explicitgroups.forEach((group) => {
@@ -211,10 +244,16 @@ export function nest(obj) {
 
   // console.log(JSON.stringify(root, undefined, 2));
 
-  return transformconjunctions(root);
+  return transformConjunctions(root);
 }
 
-export function cast(searchparams) {
+/**
+ * Turns URL parameters into key-value pairs. Assigns type
+ * to boolean and number values.
+ * @param {URLSearchParams} searchparams QBL as URL query string
+ * @returns {object} QBL as key-value-pairs
+ */
+export function toKVPairs(searchparams) {
   return Array.from(searchparams).reduce((o, [k, v]) => {
     if (v === 'true' || v === 'false') {
       o[k] = (v === 'true');

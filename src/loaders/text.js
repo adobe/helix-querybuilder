@@ -9,12 +9,23 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { nest, cast } from '../util.js';
-
+import { nest, toKVPairs } from '../util.js';
+/**
+ * Loads a multiline QBL expression
+ * @param {string} txt the QBL expression (may contain blank lines)
+ * @returns {object} Query Builder AST
+ */
 function load(txt) {
-  const pairs = txt.split('\n').map((l) => l.split('=').slice(0, 2)).filter(([k]) => !!k);
+  const pairs = txt
+    .split('\n')
+    .map((l) => {
+      const [key, ...rest] = l.split('=');
+      // the rest can contain = signs, so we turn it back into a string
+      return [key, rest.join('=')];
+    })
+    .filter(([k]) => !!k);
 
-  return nest(cast(pairs));
+  return nest(toKVPairs(pairs));
 }
 
 export { load };

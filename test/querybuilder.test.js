@@ -15,7 +15,7 @@ import assert from 'assert';
 import { load as loadquerystring } from '../src/loaders/url.js';
 import { load as loadtext } from '../src/loaders/text.js';
 import { adapt as createfilter } from '../src/adapters/filter.js';
-import { transformconjunctions, flat } from '../src/util.js';
+import { transformConjunctions, flat } from '../src/util.js';
 import { qb } from '../src/index.js';
 
 describe('Test Query Builder URL Parser', () => {
@@ -50,6 +50,13 @@ describe('Test Query Builder Text Parser', () => {
     assert.deepEqual(loadtext(''), {
       _type: 'and',
       predicates: [],
+    });
+  });
+
+  it('Works for values with =', () => {
+    assert.deepEqual(loadtext('property.value=la=la').predicates[0], {
+      _type: 'property',
+      value: 'la=la',
     });
   });
 
@@ -248,9 +255,9 @@ describe('Test Query Builder Range Property Filters', () => {
   ];
 
   it('createfilter limits results', () => {
-    assert.deepEqual(qb.filter`rangeproperty.property=val
+    assert.deepEqual(qb.filter(`rangeproperty.property=val
 rangeproperty.lowerBound=1
-rangeproperty.upperBound=100`(testarray), [
+rangeproperty.upperBound=100`)(testarray), [
       { foo: 'foo', bar: 'bar', val: 3.1415 },
     ]);
 
@@ -375,13 +382,13 @@ describe('Test Conjunction Transformer', () => {
       value: 'bar',
     };
 
-    const result = transformconjunctions(input);
+    const result = transformConjunctions(input);
 
     assert.deepEqual(input, result);
   });
 
   it('Transforms a simple conjunction', () => {
-    const result = transformconjunctions({
+    const result = transformConjunctions({
       _type: 'root',
       conjunction: 'default',
       predicates: [

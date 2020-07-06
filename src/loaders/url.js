@@ -10,10 +10,16 @@
  * governing permissions and limitations under the License.
  */
 /* eslint-disable no-underscore-dangle, no-param-reassign */
-import { nest, cast } from '../util.js';
+import { nest, toKVPairs } from '../util.js';
 
+/**
+ * Loads a URL query string
+ * @param {string} str the URL query string (may start with `?`)
+ * @param {string} prefix the prefix used for parameters that should be considered
+ * @returns {object} Query Builder AST
+ */
 function load(str, prefix = '') {
-  const obj = cast(new URLSearchParams(str));
+  const obj = toKVPairs(new URLSearchParams(str));
 
   return nest(Object.entries(obj).reduce((o, [k, v]) => {
     if (k.startsWith(prefix)) {

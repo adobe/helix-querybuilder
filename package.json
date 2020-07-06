@@ -11,7 +11,7 @@
     "build": "rollup -c",
     "prepack": "npm run build",
     "semantic-release": "semantic-release",
-    "docs": "npx jsdoc2md -c .jsdoc.json --files 'src/*.js'  > docs/API.md",
+    "docs": "npx jsdoc2md -c .jsdoc.json --files 'src/*.js' src/*/*.js  > docs/API.md",
     "commit": "git-cz"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "eslint": "7.4.0",
     "eslint-plugin-header": "3.0.0",
     "eslint-plugin-import": "2.22.0",
+    "js-yaml": "^3.14.0",
     "jsdoc-to-markdown": "6.0.1",
     "junit-report-builder": "2.0.0",
     "lint-staged": "10.2.11",

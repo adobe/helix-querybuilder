@@ -11,14 +11,36 @@
  */
 import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
+import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
 
+/**
+ * Loads a Query Builder AST from generic input: either URL query string (with &)
+ * or as key-value-pairs (with line breaks) or as Object (from JSON or YAML notation)
+ * @param {object|string|string[]} input QBL input
+ * @returns {object} Query Builder AST
+ */
+function load(input) {
+  if ((typeof input === 'object' && !Array.isArray(input)) || (Array.isArray(input) && input.every((e) => typeof e === 'object'))) {
+    return loadjson(input);
+  }
+  if (typeof input === 'string' || (Array.isArray(input) && input.every((e) => typeof e === 'string'))) {
+    const expr = Array.isArray(input) ? input.join('') : input;
+    return expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
+  }
+  return {};
+}
+
+/**
+ * Convenience function that can be used as a tagged template
+ * function and returns a filter function
+ * @param {string[]} strings string array as used in template literals
+ * @returns {function} filter function that accepts an array and returns a filtered array
+ */
+const filter = (strings) => createfilter(load(strings));
+
 const qb = {
-  filter: (strings) => {
-    const expr = strings.join('');
-    const query = expr.indexOf('\n') > 0 ? loadtext(expr) : loadquerystring(expr);
-    return createfilter(query);
-  },
+  filter,
 };
 
 export { qb };
