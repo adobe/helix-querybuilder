@@ -42,7 +42,7 @@ const filter = (strings) => createfilter(load(strings));
 
 const qb = {
   filter,
-  algolia: i => algolia(load(i))
+  algolia: (i) => algolia(load(i)),
 };
 
 export { qb };

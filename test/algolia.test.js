@@ -40,7 +40,88 @@ p:
     `, '', {
       hitsPerPage: 10,
       page: 3,
-      filters: `(foo:'bar')`,
+      filters: 'foo:\'bar\'',
+    });
+  });
+
+  it('Invalid query works', () => {
+    assertQuery(`
+and:
+  - property:
+      _: foo
+      value: bar
+      operation: unsupported
+  - rangeproperty:
+      _: baz
+p:
+  limit: 10
+  offset: 20
+    `, '', {
+      hitsPerPage: 10,
+      page: 3,
+      filters: '',
+    });
+  });
+
+  it('Range query works with TO', () => {
+    assertQuery(`
+and:
+  - property:
+      _: foo
+      value: bar
+      operation: not
+  - rangeproperty:
+      _: baz
+      lowerBound: 0
+      upperBound: 100
+      lowerOperation: ">="
+      upperOperation: "<="
+p:
+  limit: 10
+  offset: 20
+    `, '', {
+      hitsPerPage: 10,
+      page: 3,
+      filters: '(NOT foo:\'bar\' AND baz: 0 TO 100)',
+    });
+  });
+
+  it('Range query works', () => {
+    assertQuery(`
+and:
+  - property:
+      _: foo
+      value: bar
+  - rangeproperty:
+      _: baz
+      lowerBound: 0
+      upperBound: 100
+p:
+  limit: 10
+  offset: 20
+    `, '', {
+      hitsPerPage: 10,
+      page: 3,
+      filters: '(foo:\'bar\' AND baz < 100 AND baz > 0)',
+    });
+  });
+
+  it('OR works', () => {
+    assertQuery(`
+or:
+  - rangeproperty:
+      _: foo
+      lowerBound: 0
+  - rangeproperty:
+      _: baz
+      upperBound: 100
+p:
+  limit: 10
+  offset: 20
+    `, '', {
+      hitsPerPage: 10,
+      page: 3,
+      filters: '(foo > 0 OR baz < 100)',
     });
   });
 });

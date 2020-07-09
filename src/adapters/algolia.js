@@ -10,16 +10,21 @@
  * governing permissions and limitations under the License.
  */
 /* eslint-disable no-use-before-define, no-underscore-dangle */
-const filters = {
-  or: (qbtree) => `(${qbtree.predicates
+function conjunction(predicates, type) {
+  const expressions = predicates
     .map(getFilterExpression)
-    .filter((e) => !!e)
-    .join(' OR ')})`,
+    .filter((e) => !!e);
 
-  and: (qbtree) => `(${qbtree.predicates
-    .map(getFilterExpression)
-    .filter((e) => !!e)
-    .join(' AND ')})`,
+  if (expressions.length > 1) {
+    return `(${expressions.join(` ${type} `)})`;
+  }
+  return expressions.join('');
+}
+
+const filters = {
+  or: (qbtree) => conjunction(qbtree.predicates, 'OR'),
+
+  and: (qbtree) => conjunction(qbtree.predicates, 'AND'),
 
   property: ({ property, value, operation = 'equals' }) => {
     switch (operation) {
@@ -30,17 +35,17 @@ const filters = {
   },
 
   rangeproperty: ({
-    property, lowerBound, upperBound, lowerOperation = '>', upperOperation = '<',
+    rangeproperty, lowerBound, upperBound, lowerOperation = '>', upperOperation = '<',
   }) => {
     if (lowerBound !== undefined && upperBound !== undefined) {
       if (lowerOperation === '>=' && upperOperation === '<=') {
-        return `${property}: ${lowerBound} TO ${upperBound}`;
+        return `${rangeproperty}: ${lowerBound} TO ${upperBound}`;
       }
-      return `${property} ${upperOperation} ${upperBound} AND ${property} ${lowerOperation} ${lowerBound}`;
+      return `${rangeproperty} ${upperOperation} ${upperBound} AND ${rangeproperty} ${lowerOperation} ${lowerBound}`;
     } else if (lowerBound !== undefined) {
-      return `{property} ${lowerOperation} ${lowerBound}`;
+      return `${rangeproperty} ${lowerOperation} ${lowerBound}`;
     } else if (upperBound !== undefined) {
-      return `{property} ${upperOperation} ${upperBound}`;
+      return `${rangeproperty} ${upperOperation} ${upperBound}`;
     }
     return null;
   },
@@ -53,13 +58,12 @@ function defaultfilter() {
 function getFilterExpression(qbtree) {
   // look up a function for the type
   const applicable = filters[qbtree._type] ? filters[qbtree._type] : defaultfilter;
-  console.log(applicable, qbtree);
   const filterexp = applicable(qbtree);
 
   return filterexp;
 }
 
-export function adapt(qbtree = {}) {
+export function adapt(qbtree) {
   const hitsPerPage = qbtree.limit || 100;
   const page = Math.floor(qbtree.offset / hitsPerPage) || 0;
 
