@@ -13,6 +13,7 @@ import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
 import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
+import { adapt as algolia } from './adapters/algolia.js';
 
 /**
  * Loads a Query Builder AST from generic input: either URL query string (with &)
@@ -41,6 +42,7 @@ const filter = (strings) => createfilter(load(strings));
 
 const qb = {
   filter,
+  algolia: (i) => algolia(load(i)),
 };
 
 export { qb };
