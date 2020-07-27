@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/adobe/helix-querybuilder/compare/v1.1.0...v1.2.0) (2020-07-27)
+
+
+### Features
+
+* **algolia:** add support for algolia queries ([2153e23](https://github.com/adobe/helix-querybuilder/commit/2153e239d0446c4977aaee698093d89be4bd6622))
+
 # [1.1.0](https://github.com/adobe/helix-querybuilder/compare/v1.0.0...v1.1.0) (2020-07-06)
 
 
