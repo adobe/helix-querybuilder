@@ -119,6 +119,12 @@ filter([
 
 For more, see the [API documentation](docs/API.md).
 
+### Other Adapters
+
+- `filter` creates a function that filters an in-memory array
+- `algolia` returns a pair of search string and options that can be used with `algoliasearch`
+- `odata` creates an OData filter object that can be used with Azure cognitive search or Excel
+
 ## Development
 
 ### Build
