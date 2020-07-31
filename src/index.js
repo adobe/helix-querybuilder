@@ -13,6 +13,7 @@ import { load as loadquerystring } from './loaders/url.js';
 import { load as loadtext } from './loaders/text.js';
 import { load as loadjson } from './loaders/json.js';
 import { adapt as createfilter } from './adapters/filter.js';
+import { adapt as bigquery } from './adapters/bigquery.js';
 import { adapt as algolia } from './adapters/algolia.js';
 
 /**
@@ -42,6 +43,7 @@ const filter = (strings) => createfilter(load(strings));
 
 const qb = {
   filter,
+  bigquery: (i) => bigquery(load(i)),
   algolia: (i) => algolia(load(i)),
 };
 
