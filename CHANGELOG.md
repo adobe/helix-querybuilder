@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/adobe/helix-querybuilder/compare/v1.2.0...v1.3.0) (2020-07-31)
+
+
+### Features
+
+* **bigquery:** add support for google bigquery ([8440243](https://github.com/adobe/helix-querybuilder/commit/844024364b91c70c604bdf63a0dedb001ed33803))
+* **odata:** add odata adapter for azure search or excel ([236b6c9](https://github.com/adobe/helix-querybuilder/commit/236b6c937fd371d6a2df2bf65da1824ddfdea5ad))
+
 # [1.2.0](https://github.com/adobe/helix-querybuilder/compare/v1.1.0...v1.2.0) (2020-07-27)
 
 
