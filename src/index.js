@@ -16,6 +16,7 @@ import { adapt as createfilter } from './adapters/filter.js';
 import { adapt as bigquery } from './adapters/bigquery.js';
 import { adapt as algolia } from './adapters/algolia.js';
 import { adapt as odata } from './adapters/odata.js';
+import { adapt as url } from './adapters/url.js';
 
 /**
  * Loads a Query Builder AST from generic input: either URL query string (with &)
@@ -47,6 +48,7 @@ const qb = {
   bigquery: (i) => bigquery(load(i)),
   algolia: (i) => algolia(load(i)),
   odata: (i) => odata(load(i)),
+  url: (i, p) => url(load(i), p),
 };
 
 export { qb, load };
