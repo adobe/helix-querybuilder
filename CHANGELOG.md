@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/adobe/helix-querybuilder/compare/v1.3.0...v1.4.0) (2020-09-15)
+
+
+### Features
+
+* **index:** expose load function ([6ff2a60](https://github.com/adobe/helix-querybuilder/commit/6ff2a60a550d1cd6c0f3b25320b1b6d617a54f2b))
+
 # [1.3.0](https://github.com/adobe/helix-querybuilder/compare/v1.2.0...v1.3.0) (2020-07-31)
 
 
