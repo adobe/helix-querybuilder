@@ -49,4 +49,4 @@ const qb = {
   odata: (i) => odata(load(i)),
 };
 
-export { qb };
+export { qb, load };
