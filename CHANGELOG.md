@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/adobe/helix-querybuilder/compare/v1.4.0...v1.5.0) (2020-09-15)
+
+
+### Features
+
+* **adapters:** add url adapter ([6435d4f](https://github.com/adobe/helix-querybuilder/commit/6435d4fa4cccf6ac002c1f60f0844bc17ce79eb2))
+
 # [1.4.0](https://github.com/adobe/helix-querybuilder/compare/v1.3.0...v1.4.0) (2020-09-15)
 
 
