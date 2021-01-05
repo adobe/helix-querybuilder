@@ -11,11 +11,11 @@
  */
 /* eslint-env mocha */
 import assert from 'assert';
-import { safeLoad } from 'js-yaml';
+import { load } from 'js-yaml';
 import { qb } from '../src/index.js';
 
 function assertQuery(yaml, expectedQuery, prefix) {
-  const url = qb.url(safeLoad(yaml), prefix);
+  const url = qb.url(load(yaml), prefix);
   assert.deepEqual(url.toString(), new URLSearchParams(expectedQuery).toString());
 }
 

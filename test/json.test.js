@@ -12,11 +12,11 @@
 /* eslint-env mocha */
 
 import assert from 'assert';
-import { safeLoad } from 'js-yaml';
+import { load } from 'js-yaml';
 import { unnest } from '../src/loaders/json.js';
 
 function assertQuery(yaml, pairs) {
-  assert.deepEqual(unnest(safeLoad(yaml)), pairs.split('\n').filter((e) => !!e).map((e) => e.split('=')));
+  assert.deepEqual(unnest(load(yaml)), pairs.split('\n').filter((e) => !!e).map((e) => e.split('=')));
 }
 
 describe('JSON loader tests', () => {

@@ -11,11 +11,11 @@
  */
 /* eslint-env mocha */
 import assert from 'assert';
-import { safeLoad } from 'js-yaml';
+import { load } from 'js-yaml';
 import { qb } from '../src/index.js';
 
 function assertQuery(yaml, expectedQuery) {
-  const [prefix, suffix] = qb.bigquery(safeLoad(yaml));
+  const [prefix, suffix] = qb.bigquery(load(yaml));
   assert.equal(`${prefix}SELECT * FROM visits${suffix}`, expectedQuery);
 }
 
