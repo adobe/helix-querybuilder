@@ -11,11 +11,11 @@
  */
 /* eslint-env mocha */
 import assert from 'assert';
-import { safeLoad } from 'js-yaml';
+import { load } from 'js-yaml';
 import { qb } from '../src/index.js';
 
 function assertResults(yaml, input, expected) {
-  const f = qb.filter(safeLoad(yaml));
+  const f = qb.filter(load(yaml));
   const result = f(input);
   assert.deepEqual(result, expected);
 }
